@@ -1,0 +1,559 @@
+Mplus VERSION 7.4
+MUTHEN & MUTHEN
+07/06/2017   9:25 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+    MONTE CARLO - DISCRIMINANT VALIDITY IN MEDIATION MODELS
+    USING "SINGLE INDICATOR SEM"
+
+    ! Note 1:
+    User inputs 4 units of information in lines that have ! INPUT 1-4:
+
+    ! Note 2:
+    Multi-item measure treated as single-item with known reliability.
+    This assumes strictly parallel items (same loadings and error variances).
+
+    ! Note 3:
+    Remarks and instructions are behind ! exclamation marks
+  MONTECARLO:
+    NAMES = m y;    ! variable names
+    NREPS = 1000;   ! number of replications
+    SEED = 123456;  ! seed to ensure same results across computers
+
+  !*******************************************************************************!
+  ! SAMPLE SIZE:
+  !*******************************************************************************!
+    NOBS = 223;   ! INPUT 1: give sample size. Here NOBS = 223
+  !*******************************************************************************!
+
+  MODEL POPULATION:
+    fm BY m@1;     ! factor loading fixed to 1
+    fy BY y@1;     ! factor loading fixed to 1
+    fm-fy@1;       ! variance of LVs fixed to 1
+    [m-y@0];       ! mean of m and y fixed to 0
+    fy WITH fm@0;  ! true correlation between m and y fixed to zero
+
+  !*******************************************************************************!
+  ! RELIABILITY OF M AND Y, AND OBSERVED CORRELATION:
+  !*******************************************************************************!
+    m@.07;         ! INPUT 2: give residual variance of m: (1 - reliability of m)
+    y@.17;         ! INPUT 3: give residual variance of y: (1 - reliability of y)
+    m WITH y@.356; ! INPUT 4: give observed correlation between m and y (no sign)
+  !*******************************************************************************!
+
+  MODEL:	
+    ! same as model population, with (labels) to refer to in model constraints
+    fm BY m@1; fy BY y@1; fm-fy@1;
+    m (ve_m); y (ve_y); [m-y@0]; fy WITH fm@0;
+    m (ve_m); y (ve_y);  m WITH y (cor);
+  MODEL CONSTRAINT:
+    NEW (reli_m reli_y r_obs r_tru dvi_l dvi_s_m dvi_s_y);
+    reli_m = 1 - ve_m;  ! reliability of m
+    reli_y = 1 - ve_y;  ! reliability of y
+    r_obs = cor;        ! observed correlation m-y
+    r_tru = cor/SQRT(reli_m*reli_y); ! "true" correlation m-y
+  ! lenient discriminant-validity index: rtru < 1
+    dvi_l  = 1 - r_tru; ! dvi_l for both
+  ! strict discriminant validity index (dvi_s): var extracted > var shared
+    dvi_s_m = reli_m - r_tru^2; ! dvi_s for m
+    dvi_s_y = reli_y - r_tru^2; ! dvi_s for y
+
+   ! Interpretation:
+   ! For Statistical Power check section "New/Additional Parameters"
+   ! the columns "ESTIMATES averag" and "% Sig coeff".
+
+   ! Discriminant Validity is supported if:
+   ! (1) DVI's ("ESTIMATES average") are larger than zero, and
+   ! (2) have > 80% significant coefficients ("% Sig coeff")
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+MONTE CARLO - DISCRIMINANT VALIDITY IN MEDIATION MODELS
+USING "SINGLE INDICATOR SEM"
+
+User inputs 4 units of information in lines that have ! INPUT 1-4:
+
+Multi-item measure treated as single-item with known reliability.
+This assumes strictly parallel items (same loadings and error variances).
+
+Remarks and instructions are behind ! exclamation marks
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         223
+
+Number of replications
+    Requested                                                 1000
+    Completed                                                 1000
+Value of seed                                               123456
+
+Number of dependent variables                                    2
+Number of independent variables                                  0
+Number of continuous latent variables                            2
+
+Observed dependent variables
+
+  Continuous
+   M           Y
+
+Continuous latent variables
+   FM          FY
+
+
+Estimator                                                       ML
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+
+
+
+SAMPLE STATISTICS FOR THE FIRST REPLICATION
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              M             Y
+              ________      ________
+      1         0.172         0.031
+
+
+           Covariances
+              M             Y
+              ________      ________
+ M              1.162
+ Y              0.392         0.997
+
+
+           Correlations
+              M             Y
+              ________      ________
+ M              1.000
+ Y              0.364         1.000
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        3
+
+Loglikelihood
+
+    H0 Value
+
+        Mean                              -644.590
+        Std Dev                             15.069
+        Number of successful computations     1000
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.993         -679.646       -678.947
+           0.980       0.982         -675.538       -675.068
+           0.950       0.951         -669.378       -668.905
+           0.900       0.907         -663.903       -663.644
+           0.800       0.791         -657.272       -657.911
+           0.700       0.688         -652.492       -653.169
+           0.500       0.491         -644.590       -645.109
+           0.300       0.312         -636.688       -636.197
+           0.200       0.208         -631.908       -631.409
+           0.100       0.114         -625.277       -624.099
+           0.050       0.046         -619.802       -620.573
+           0.020       0.022         -613.642       -613.430
+           0.010       0.010         -609.534       -610.080
+
+    H1 Value
+
+        Mean                              -643.619
+        Std Dev                             15.122
+        Number of successful computations     1000
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.992         -678.798       -677.423
+           0.980       0.982         -674.676       -674.161
+           0.950       0.953         -668.494       -668.391
+           0.900       0.907         -663.000       -662.403
+           0.800       0.794         -656.346       -656.557
+           0.700       0.684         -651.549       -652.262
+           0.500       0.487         -643.619       -644.320
+           0.300       0.313         -635.689       -635.075
+           0.200       0.212         -630.892       -630.124
+           0.100       0.117         -624.238       -623.095
+           0.050       0.049         -618.744       -618.829
+           0.020       0.020         -612.562       -612.580
+           0.010       0.009         -608.440       -610.067
+
+Information Criteria
+
+    Akaike (AIC)
+
+        Mean                              1295.180
+        Std Dev                             30.139
+        Number of successful computations     1000
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.990         1225.068       1224.112
+           0.980       0.978         1233.284       1232.640
+           0.950       0.954         1245.604       1247.061
+           0.900       0.886         1256.554       1253.593
+           0.800       0.792         1269.815       1268.159
+           0.700       0.688         1279.375       1278.387
+           0.500       0.509         1295.180       1296.164
+           0.300       0.312         1310.985       1312.318
+           0.200       0.209         1320.545       1321.651
+           0.100       0.093         1333.806       1332.979
+           0.050       0.049         1344.755       1343.416
+           0.020       0.018         1357.076       1355.841
+           0.010       0.007         1365.292       1362.773
+
+    Bayesian (BIC)
+
+        Mean                              1305.401
+        Std Dev                             30.139
+        Number of successful computations     1000
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.990         1235.289       1234.334
+           0.980       0.978         1243.505       1242.861
+           0.950       0.954         1255.826       1257.282
+           0.900       0.886         1266.775       1263.815
+           0.800       0.792         1280.037       1278.380
+           0.700       0.688         1289.597       1288.609
+           0.500       0.509         1305.401       1306.385
+           0.300       0.312         1321.206       1322.539
+           0.200       0.209         1330.766       1331.873
+           0.100       0.093         1344.027       1343.200
+           0.050       0.049         1354.977       1353.637
+           0.020       0.018         1367.298       1366.062
+           0.010       0.007         1375.513       1372.994
+
+    Sample-Size Adjusted BIC (n* = (n + 2) / 24)
+
+        Mean                              1295.894
+        Std Dev                             30.139
+        Number of successful computations     1000
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.990         1225.782       1224.826
+           0.980       0.978         1233.998       1233.354
+           0.950       0.954         1246.319       1247.775
+           0.900       0.886         1257.268       1254.307
+           0.800       0.792         1270.529       1268.873
+           0.700       0.688         1280.089       1279.101
+           0.500       0.509         1295.894       1296.878
+           0.300       0.312         1311.699       1313.032
+           0.200       0.209         1321.259       1322.365
+           0.100       0.093         1334.520       1333.693
+           0.050       0.049         1345.469       1344.130
+           0.020       0.018         1357.790       1356.555
+           0.010       0.007         1366.006       1363.487
+
+Chi-Square Test of Model Fit
+
+        Degrees of freedom                       2
+
+        Mean                                 1.942
+        Std Dev                              1.940
+        Number of successful computations     1000
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.988            0.020          0.016
+           0.980       0.981            0.040          0.042
+           0.950       0.948            0.103          0.101
+           0.900       0.893            0.211          0.190
+           0.800       0.801            0.446          0.446
+           0.700       0.704            0.713          0.723
+           0.500       0.498            1.386          1.377
+           0.300       0.294            2.408          2.347
+           0.200       0.185            3.219          3.032
+           0.100       0.090            4.605          4.463
+           0.050       0.041            5.991          5.547
+           0.020       0.017            7.824          7.398
+           0.010       0.007            9.210          8.362
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+        Mean                                 0.021
+        Std Dev                              0.033
+        Number of successful computations     1000
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       1.000           -0.056          0.000
+           0.980       1.000           -0.047          0.000
+           0.950       1.000           -0.033          0.000
+           0.900       1.000           -0.021          0.000
+           0.800       1.000           -0.007          0.000
+           0.700       0.366            0.004          0.000
+           0.500       0.330            0.021          0.000
+           0.300       0.259            0.038          0.028
+           0.200       0.199            0.049          0.048
+           0.100       0.140            0.063          0.074
+           0.050       0.096            0.075          0.089
+           0.020       0.051            0.089          0.110
+           0.010       0.036            0.098          0.119
+
+SRMR (Standardized Root Mean Square Residual)
+
+        Mean                                 0.037
+        Std Dev                              0.020
+        Number of successful computations     1000
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       1.000           -0.009          0.004
+           0.980       1.000           -0.004          0.006
+           0.950       0.986            0.004          0.009
+           0.900       0.925            0.012          0.013
+           0.800       0.780            0.020          0.019
+           0.700       0.664            0.027          0.024
+           0.500       0.448            0.037          0.034
+           0.300       0.285            0.047          0.046
+           0.200       0.205            0.054          0.054
+           0.100       0.106            0.062          0.063
+           0.050       0.067            0.070          0.074
+           0.020       0.033            0.078          0.084
+           0.010       0.023            0.083          0.088
+
+
+MODEL RESULTS
+
+                              ESTIMATES              S. E.     M. S. E.  95%  % Sig
+                 Population   Average   Std. Dev.   Average             Cover Coeff
+ FM       BY
+  M                   1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+
+ FY       BY
+  Y                   1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+
+ FY       WITH
+  FM                  0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+
+ M        WITH
+  Y                   0.000     0.3557     0.0778     0.0786     0.1326 0.002 0.998
+
+ Intercepts
+  M                   0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y                   0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+
+ Variances
+  FM                  1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+  FY                  1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+
+ Residual Variances
+  M                   0.500     0.0705     0.1002     0.1014     0.1945 0.026 0.067
+  Y                   0.500     0.1701     0.1100     0.1108     0.1209 0.196 0.306
+
+New/Additional Parameters
+  RELI_M              0.500     0.9295     0.1002     0.1014     0.1945 0.026 1.000
+  RELI_Y              0.500     0.8299     0.1100     0.1108     0.1209 0.196 1.000
+  R_OBS               0.500     0.3557     0.0778     0.0786     0.0269 0.536 0.998
+  R_TRU               0.500     0.4148     0.1184     0.1198     0.0213 0.803 0.997
+  DVI_L               0.500     0.5852     0.1184     0.1198     0.0213 0.803 0.958
+  DVI_S_M             0.500     0.7435     0.1813     0.1848     0.0921 0.615 0.897
+  DVI_S_Y             0.500     0.6439     0.1950     0.1957     0.0587 0.759 0.827
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Average Condition Number for the Information Matrix      0.390E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           NU
+              M             Y
+              ________      ________
+      1           0             0
+
+
+           LAMBDA
+              FM            FY
+              ________      ________
+ M                  0             0
+ Y                  0             0
+
+
+           THETA
+              M             Y
+              ________      ________
+ M                  1
+ Y                  2             3
+
+
+           ALPHA
+              FM            FY
+              ________      ________
+      1           0             0
+
+
+           BETA
+              FM            FY
+              ________      ________
+ FM                 0             0
+ FY                 0             0
+
+
+           PSI
+              FM            FY
+              ________      ________
+ FM                 0
+ FY                 0             0
+
+
+     PARAMETER SPECIFICATION FOR THE ADDITIONAL PARAMETERS
+
+
+           New/Additional Parameters
+              RELI_M        RELI_Y        R_OBS         R_TRU         DVI_L
+              ________      ________      ________      ________      ________
+ 1                  4             5             6             7             8
+
+
+           New/Additional Parameters
+              DVI_S_M       DVI_S_Y
+              ________      ________
+ 1                  9            10
+
+
+     STARTING VALUES
+
+
+           NU
+              M             Y
+              ________      ________
+      1         0.000         0.000
+
+
+           LAMBDA
+              FM            FY
+              ________      ________
+ M              1.000         0.000
+ Y              0.000         1.000
+
+
+           THETA
+              M             Y
+              ________      ________
+ M              0.500
+ Y              0.000         0.500
+
+
+           ALPHA
+              FM            FY
+              ________      ________
+      1         0.000         0.000
+
+
+           BETA
+              FM            FY
+              ________      ________
+ FM             0.000         0.000
+ FY             0.000         0.000
+
+
+           PSI
+              FM            FY
+              ________      ________
+ FM             1.000
+ FY             0.000         1.000
+
+
+     STARTING VALUES FOR THE ADDITIONAL PARAMETERS
+
+
+           New/Additional Parameters
+              RELI_M        RELI_Y        R_OBS         R_TRU         DVI_L
+              ________      ________      ________      ________      ________
+ 1              0.500         0.500         0.500         0.500         0.500
+
+
+           New/Additional Parameters
+              DVI_S_M       DVI_S_Y
+              ________      ________
+ 1              0.500         0.500
+
+
+     POPULATION VALUES
+
+
+           NU
+              M             Y
+              ________      ________
+ 1              0.000         0.000
+
+
+           LAMBDA
+              FM            FY
+              ________      ________
+ M              1.000         0.000
+ Y              0.000         1.000
+
+
+           THETA
+              M             Y
+              ________      ________
+ M              0.070
+ Y              0.356         0.170
+
+
+           ALPHA
+              FM            FY
+              ________      ________
+ 1              0.000         0.000
+
+
+           BETA
+              FM            FY
+              ________      ________
+ FM             0.000         0.000
+ FY             0.000         0.000
+
+
+           PSI
+              FM            FY
+              ________      ________
+ FM             1.000
+ FY             0.000         1.000
+
+
+DIAGRAM INFORMATION
+
+  Mplus diagrams are currently not available for Monte Carlo analysis.
+  No diagram output was produced.
+
+
+     Beginning Time:  09:25:19
+        Ending Time:  09:25:20
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2015 Muthen & Muthen

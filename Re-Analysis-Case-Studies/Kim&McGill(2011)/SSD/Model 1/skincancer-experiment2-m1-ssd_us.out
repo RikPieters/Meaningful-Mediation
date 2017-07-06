@@ -1,0 +1,270 @@
+Mplus VERSION 7.4
+MUTHEN & MUTHEN
+07/04/2017   1:21 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+    Re-analysis of Experiment 2 in:
+    Kim Sara and Ann L. McGill (2011),
+    "Gaming with Mr. Slot or Gaming with the Slot Machine?
+    Power, Antropomorphism, and Risk Perception,"
+    Journal of Consumer Research, 38 (1), 94-107
+
+    ! SSD: Summary Statistics Data
+    ! Inspect STDY as M and Y are standardized in paper
+
+    Model 1 is path mediation model
+  DATA:
+    FILE = Experiment2-SSD_us.dat; ! SSD as in Appendix. Results as in Kim and McGill (2011)
+    TYPE = means stdeviations correlation;
+    NOBSERVATIONS = 84;
+  VARIABLE:
+    NAMES = x1 x2 x1x2 m y;
+  ANALYSIS:
+  MODEL:
+    m ON x1 (a1);    ! regress M ON X1 and label the estimate a1
+    m ON x2 (a2);    ! regress M ON X2 and label the estimate a2
+    m ON x1x2 (a3);  ! regress M ON X1X2 and label the estimate a3
+    y ON m (b);      ! regress Y ON M and label the estimate b
+    y ON x1 (cp1);   ! regress Y ON X1X2 and label the estimate cp1 (= c-prime1)
+    y ON x2 (cp2);   ! regress Y ON X1X2 and label the estimate cp2 (= c-prime2)
+    y ON x1x2 (cp3); ! regress Y ON X1X2 and label the estimate cp3 (= c-prime3)
+  MODEL CONSTRAINT:
+  ! make the required new variables
+    new (a1b a2b a3b cprime1 cprime2 cprime3 total totX1X2 diff pmX1X2);
+    a1b = a1*b;                ! mediated effect of X1
+    a2b = a2*b;                ! mediated effect of X2
+    a3b = a3*b;                ! mediated effect of X1X2
+    cprime1 = cp1;             ! direct effect of X1
+    cprime2 = cp2;             ! direct effect of X2
+    cprime3 = cp3;             ! direct effect of X1X2
+    total = a1b+a2b+a3b+cp1+cp2+cp3; ! total effect overall of Xs on Y
+    totX1X2 = a3*b + cp3;      ! total effect of X1X2 on Y
+    diff = a3b - cp3;          ! difference indirect and conditional direct effect
+    pmX1X2 = (a3b/(a3b+cp3))*100; ! percentage final effect of X1X2 which is mediated
+  OUTPUT:
+    STDY;                      ! R-SQUARE
+    SAMPSTAT;                  ! Sample Statistics (M, SD, corr)
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+Re-analysis of Experiment 2 in:
+Kim Sara and Ann L. McGill (2011),
+"Gaming with Mr. Slot or Gaming with the Slot Machine?
+Power, Antropomorphism, and Risk Perception,"
+Journal of Consumer Research, 38 (1), 94-107
+
+
+Model 1 is path mediation model
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                          84
+
+Number of dependent variables                                    2
+Number of independent variables                                  3
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   M           Y
+
+Observed independent variables
+   X1          X2          X1X2
+
+
+Estimator                                                       ML
+Information matrix                                        EXPECTED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+
+Input data file(s)
+  Experiment2-SSD_us.dat
+
+Input data format  FREE
+
+
+SAMPLE STATISTICS
+
+
+     SAMPLE STATISTICS
+
+
+           Means/Intercepts/Thresholds
+              M             Y             X1            X2            X1X2
+              ________      ________      ________      ________      ________
+      1         4.074         6.837         0.143         0.000        -0.048
+
+
+           Covariances/Correlations/Residual Correlations
+              M             Y             X1            X2            X1X2
+              ________      ________      ________      ________      ________
+ M              1.248
+ Y             -0.688         2.670
+ X1            -0.032         0.236         0.992
+ X2            -0.003        -0.061        -0.048         1.012
+ X1X2           0.361        -0.445         0.007         0.145         1.010
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       11
+
+Loglikelihood
+
+          H0 Value                        -274.513
+          H1 Value                        -274.513
+
+Information Criteria
+
+          Akaike (AIC)                     571.026
+          Bayesian (BIC)                   597.765
+          Sample-Size Adjusted BIC         563.065
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                              0.000
+          Degrees of Freedom                     0
+          P-Value                           0.0000
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+          90 Percent C.I.                    0.000  0.000
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                             26.807
+          Degrees of Freedom                     7
+          P-Value                           0.0004
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.000
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ M        ON
+    X1                -0.038      0.116     -0.327      0.743
+    X2                -0.057      0.116     -0.496      0.620
+    X1X2               0.366      0.116      3.164      0.002
+
+ Y        ON
+    M                 -0.466      0.152     -3.060      0.002
+    X1                 0.224      0.162      1.385      0.166
+    X2                -0.012      0.162     -0.074      0.941
+    X1X2              -0.274      0.171     -1.598      0.110
+
+ Intercepts
+    M                  4.097      0.116     35.380      0.000
+    Y                  8.692      0.645     13.475      0.000
+
+ Residual Variances
+    M                  1.101      0.170      6.481      0.000
+    Y                  2.148      0.331      6.481      0.000
+
+New/Additional Parameters
+    A1B                0.018      0.054      0.326      0.745
+    A2B                0.027      0.055      0.490      0.624
+    A3B               -0.171      0.078     -2.200      0.028
+    CPRIME1            0.224      0.162      1.385      0.166
+    CPRIME2           -0.012      0.162     -0.074      0.941
+    CPRIME3           -0.274      0.171     -1.598      0.110
+    TOTAL             -0.188      0.285     -0.660      0.509
+    TOTX1X2           -0.444      0.171     -2.606      0.009
+    DIFF               0.103      0.204      0.503      0.615
+    PMX1X2            38.455     20.241      1.900      0.057
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ M        ON
+    X1                -0.034      0.104     -0.328      0.743
+    X2                -0.052      0.104     -0.497      0.619
+    X1X2               0.330      0.096      3.439      0.001
+
+ Y        ON
+    M                 -0.319      0.100     -3.201      0.001
+    X1                 0.138      0.098      1.403      0.161
+    X2                -0.007      0.100     -0.074      0.941
+    X1X2              -0.168      0.104     -1.627      0.104
+
+ Intercepts
+    M                  3.690      0.300     12.279      0.000
+    Y                  5.352      0.458     11.686      0.000
+
+ Residual Variances
+    M                  0.893      0.064     13.991      0.000
+    Y                  0.814      0.077     10.629      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    M                  0.107      0.064      1.681      0.093
+    Y                  0.186      0.077      2.427      0.015
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.744E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    f:\research\mediation\jcr_tutorial\text\version 2\cases studies\kim&mcgill(2011)\ssd\skincancer-
+
+     Beginning Time:  13:21:27
+        Ending Time:  13:21:27
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2015 Muthen & Muthen

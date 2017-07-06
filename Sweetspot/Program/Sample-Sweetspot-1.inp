@@ -1,0 +1,38 @@
+TITLE:
+  MONTE CARLO - 
+  DISCRIMINANT VALIDITY IN MEDIATION MODELS
+  USING "SINGLE INDICATOR SEM"
+
+  !! SAMPLE PROGRAM WITH LARGE N AND LARGE SHARED VARIANCE
+MONTECARLO:
+  NAMES = m y;     ! variable names
+  NOBS = 10000;    ! sample size IS 10,000
+  NREPS = 1000;    ! number of replications
+MODEL POPULATION:
+! Measurement Model  
+  fm by m@1; ! loading fixed to 1
+  fy by y@1; ! loading fixed to 1
+  fm-fy@1;   ! variance of LVs fixed to 1
+  [m-y@0];   ! mean of m and y fixed to 0
+  m-y@0.50000; ! Item error variance is (1 - reliability of m,y)
+! Structural Model
+  fm WITH fy@0.707107;  ! true correlation (50% shared variance)
+MODEL:	
+! Measurement Model
+  fm BY m@1; ! factor loading fixed to 1 
+  m (ve);    ! residual variance of m, with label (ve) 
+  fy BY y@1; ! factor loading fixed to 1
+  y (ve);    ! same label ensures same residual variance 
+  fm-fy@1;   ! variances of LVs fixed to 1
+  [m-y@0];   ! means of m and y fixed to 0
+! Structural Model
+  fy WITH fm*0.707107 (b); ! true correlation estimated
+MODEL CONSTRAINT:
+  NEW (reli rtru robs dvi_l dvi_s); 
+  reli = 1-ve; !      
+  rtru = b;
+  robs = rtru*SQRT(reli*reli); ! robs = rtru*reli, when reli_m = reli_y
+  ! discriminant-validity-index_lenient: rtru < 1
+  dvi_l  = 1 - rtru;  
+  ! discriminant-validity-index_strict: var extracted > var shared
+  dvi_s = reli - rtru^2; 

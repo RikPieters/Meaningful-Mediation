@@ -1,0 +1,559 @@
+Mplus VERSION 7.4
+MUTHEN & MUTHEN
+07/04/2017  10:41 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+   MONTE SIMULATION TO ESTIMATE STATISTICAL POWER
+    Study 3 in: Kupor, Daniella M and Zakary L. Tormala (2015),
+    "Persuasion, Interrupted: The Effect of Momentary Interruptions
+    on Message Processing and Persuasion," Journal of Consumer Research,
+    vol 42, 300-315.
+
+    ! assesses the statistical power of the results,
+    ! using Monte Carlo analysis, with estimated parameters
+    ! following Muthen, Muthen, and Asparouhov (2016) and references there
+  MONTECARLO:
+    NAMES = conditio beh_int tho_fav curiosit;
+    NOBSERVATIONS = 450; ! sample size / examine statistical power at this sample
+    NREPS = 1000;        ! 1000 replication samples generated
+  MODEL POPULATION:
+    [conditio@0.501]; conditio@.251; ! observed mean and variance of X
+    curiosit ON conditio*0.321 (a1); ! parameter estimates of partially stand results
+    tho_fav  ON conditio*0.257 (a2);
+    tho_fav  ON curiosit*0.186 (d);
+    beh_int  ON conditio*0.233 (cp);
+    beh_int  ON curiosit*0.267 (b1);
+    beh_int  ON tho_fav*0.342 (b2);
+    [beh_int*-.119];  ! intercept
+    [tho_fav*-.131];
+    [curiosit*-.164];
+    beh_int*0.739;  ! residual variance
+    tho_fav*0.941;
+    curiosit*0.974;
+  MODEL:
+    [conditio@0.501]; conditio@.251; ! observed mean and variance of X
+    curiosit ON conditio*0.321 (a1);
+    tho_fav  ON conditio*0.257 (a2);
+    tho_fav  ON curiosit*0.186 (d);
+    beh_int  ON conditio*0.233 (cp);
+    beh_int  ON curiosit*0.267 (b1);
+    beh_int  ON tho_fav*0.342 (b2);
+    [beh_int*-.119];  ! intercept
+    [tho_fav*-.131];
+    [curiosit*-.164];
+    beh_int*0.739;  ! residual variance
+    tho_fav*0.941;
+    curiosit*0.974;
+  MODEL CONSTRAINT:
+    NEW(a1b1*0.086 a2b2*0.088 a1db2*0.020 totmed*0.194 total*0.426);
+    a1b1 = a1*b1;
+    a2b2 = a2*b2;
+    a1db2 = a1*d*b2;
+    totmed = a1b1 + a2b2 + a1db2;
+    total = totmed + cp;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+MONTE SIMULATION TO ESTIMATE STATISTICAL POWER
+Study 3 in: Kupor, Daniella M and Zakary L. Tormala (2015),
+"Persuasion, Interrupted: The Effect of Momentary Interruptions
+on Message Processing and Persuasion," Journal of Consumer Research,
+vol 42, 300-315.
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         450
+
+Number of replications
+    Requested                                                 1000
+    Completed                                                 1000
+Value of seed                                                    0
+
+Number of dependent variables                                    3
+Number of independent variables                                  1
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   BEH_INT     THO_FAV     CURIOSIT
+
+Observed independent variables
+   CONDITIO
+
+
+Estimator                                                       ML
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+
+
+
+SAMPLE STATISTICS FOR THE FIRST REPLICATION
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+      1         0.006         0.056         0.012         0.517
+
+
+           Covariances
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+ BEH_INT        0.966
+ THO_FAV        0.463         1.022
+ CURIOSIT       0.369         0.293         1.044
+ CONDITIO       0.120         0.067         0.112         0.265
+
+
+           Correlations
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+ BEH_INT        1.000
+ THO_FAV        0.466         1.000
+ CURIOSIT       0.367         0.284         1.000
+ CONDITIO       0.238         0.130         0.213         1.000
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       12
+
+Loglikelihood
+
+    H0 Value
+
+        Mean                             -2149.704
+        Std Dev                             28.602
+        Number of successful computations     1000
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.990        -2216.241      -2216.313
+           0.980       0.981        -2208.444      -2208.413
+           0.950       0.951        -2196.752      -2196.686
+           0.900       0.905        -2186.361      -2185.688
+           0.800       0.797        -2173.776      -2174.434
+           0.700       0.697        -2164.703      -2165.240
+           0.500       0.499        -2149.704      -2150.038
+           0.300       0.296        -2134.705      -2135.215
+           0.200       0.198        -2125.633      -2126.004
+           0.100       0.102        -2113.048      -2112.689
+           0.050       0.049        -2102.656      -2102.884
+           0.020       0.026        -2090.964      -2085.645
+           0.010       0.015        -2083.167      -2081.822
+
+    H1 Value
+
+        Mean                             -2148.722
+        Std Dev                             28.608
+        Number of successful computations     1000
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.993        -2215.273      -2214.139
+           0.980       0.981        -2207.474      -2206.909
+           0.950       0.951        -2195.779      -2195.659
+           0.900       0.904        -2185.386      -2185.154
+           0.800       0.796        -2172.799      -2173.387
+           0.700       0.694        -2163.724      -2164.038
+           0.500       0.493        -2148.722      -2149.183
+           0.300       0.294        -2133.720      -2134.249
+           0.200       0.199        -2124.646      -2124.697
+           0.100       0.102        -2112.058      -2111.808
+           0.050       0.049        -2101.665      -2101.981
+           0.020       0.027        -2089.970      -2084.793
+           0.010       0.013        -2082.171      -2080.223
+
+Information Criteria
+
+    Akaike (AIC)
+
+        Mean                              4323.408
+        Std Dev                             57.204
+        Number of successful computations     1000
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.985         4190.334       4186.905
+           0.980       0.974         4205.928       4195.191
+           0.950       0.951         4229.313       4229.368
+           0.900       0.898         4250.095       4249.284
+           0.800       0.802         4275.265       4275.356
+           0.700       0.704         4293.410       4293.991
+           0.500       0.501         4323.408       4323.418
+           0.300       0.303         4353.406       4354.407
+           0.200       0.203         4371.551       4372.111
+           0.100       0.095         4396.721       4395.262
+           0.050       0.049         4417.504       4417.039
+           0.020       0.019         4440.889       4440.416
+           0.010       0.010         4456.483       4453.161
+
+    Bayesian (BIC)
+
+        Mean                              4372.719
+        Std Dev                             57.204
+        Number of successful computations     1000
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.985         4239.645       4236.216
+           0.980       0.974         4255.239       4244.502
+           0.950       0.951         4278.624       4278.679
+           0.900       0.898         4299.406       4298.595
+           0.800       0.802         4324.576       4324.667
+           0.700       0.704         4342.721       4343.302
+           0.500       0.501         4372.719       4372.729
+           0.300       0.303         4402.717       4403.718
+           0.200       0.203         4420.862       4421.422
+           0.100       0.095         4446.032       4444.573
+           0.050       0.049         4466.815       4466.350
+           0.020       0.019         4490.200       4489.727
+           0.010       0.010         4505.794       4502.472
+
+    Sample-Size Adjusted BIC (n* = (n + 2) / 24)
+
+        Mean                              4334.636
+        Std Dev                             57.204
+        Number of successful computations     1000
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.985         4201.561       4198.132
+           0.980       0.974         4217.155       4206.418
+           0.950       0.951         4240.540       4240.595
+           0.900       0.898         4261.323       4260.511
+           0.800       0.802         4286.493       4286.583
+           0.700       0.704         4304.638       4305.219
+           0.500       0.501         4334.636       4334.645
+           0.300       0.303         4364.634       4365.634
+           0.200       0.203         4382.779       4383.339
+           0.100       0.095         4407.949       4406.490
+           0.050       0.049         4428.731       4428.266
+           0.020       0.019         4452.116       4451.644
+           0.010       0.010         4467.710       4464.388
+
+Chi-Square Test of Model Fit
+
+        Degrees of freedom                       2
+
+        Mean                                 1.964
+        Std Dev                              1.995
+        Number of successful computations     1000
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.991            0.020          0.021
+           0.980       0.979            0.040          0.038
+           0.950       0.941            0.103          0.081
+           0.900       0.882            0.211          0.178
+           0.800       0.778            0.446          0.405
+           0.700       0.675            0.713          0.619
+           0.500       0.493            1.386          1.345
+           0.300       0.303            2.408          2.433
+           0.200       0.205            3.219          3.249
+           0.100       0.097            4.605          4.572
+           0.050       0.046            5.991          5.650
+           0.020       0.020            7.824          7.455
+           0.010       0.008            9.210          8.983
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+        Mean                                 0.015
+        Std Dev                              0.024
+        Number of successful computations     1000
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       1.000           -0.040          0.000
+           0.980       1.000           -0.034          0.000
+           0.950       1.000           -0.024          0.000
+           0.900       1.000           -0.015          0.000
+           0.800       1.000           -0.005          0.000
+           0.700       0.367            0.003          0.000
+           0.500       0.333            0.015          0.000
+           0.300       0.267            0.028          0.022
+           0.200       0.218            0.036          0.037
+           0.100       0.134            0.046          0.053
+           0.050       0.095            0.055          0.064
+           0.020       0.048            0.065          0.078
+           0.010       0.036            0.071          0.088
+
+SRMR (Standardized Root Mean Square Residual)
+
+        Mean                                 0.021
+        Std Dev                              0.012
+        Number of successful computations     1000
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       1.000           -0.008          0.002
+           0.980       1.000           -0.005          0.003
+           0.950       1.000            0.000          0.005
+           0.900       0.946            0.005          0.006
+           0.800       0.790            0.010          0.010
+           0.700       0.645            0.014          0.013
+           0.500       0.430            0.021          0.018
+           0.300       0.261            0.027          0.025
+           0.200       0.190            0.031          0.030
+           0.100       0.117            0.037          0.038
+           0.050       0.077            0.041          0.043
+           0.020       0.035            0.046          0.052
+           0.010       0.030            0.049          0.056
+
+
+MODEL RESULTS
+
+                              ESTIMATES              S. E.     M. S. E.  95%  % Sig
+                 Population   Average   Std. Dev.   Average             Cover Coeff
+ CURIOSIT ON
+  CONDITIO            0.321     0.3182     0.0915     0.0930     0.0084 0.948 0.927
+
+ THO_FAV  ON
+  CONDITIO            0.257     0.2554     0.0928     0.0925     0.0086 0.945 0.792
+  CURIOSIT            0.186     0.1863     0.0460     0.0463     0.0021 0.953 0.979
+
+ BEH_INT  ON
+  CONDITIO            0.233     0.2360     0.0812     0.0827     0.0066 0.947 0.827
+  CURIOSIT            0.267     0.2665     0.0438     0.0418     0.0019 0.931 1.000
+  THO_FAV             0.342     0.3400     0.0426     0.0418     0.0018 0.940 1.000
+
+ Means
+  CONDITIO            0.501     0.5010     0.0000     0.0000     0.0000 1.000 0.000
+
+ Intercepts
+  BEH_INT            -0.119    -0.1210     0.0571     0.0580     0.0033 0.950 0.557
+  THO_FAV            -0.131    -0.1301     0.0652     0.0651     0.0042 0.942 0.493
+  CURIOSIT           -0.164    -0.1613     0.0655     0.0658     0.0043 0.949 0.695
+
+ Variances
+  CONDITIO            0.251     0.2510     0.0000     0.0000     0.0000 1.000 0.000
+
+ Residual Variances
+  BEH_INT             0.739     0.7331     0.0481     0.0489     0.0023 0.948 1.000
+  THO_FAV             0.941     0.9351     0.0645     0.0623     0.0042 0.943 1.000
+  CURIOSIT            0.974     0.9709     0.0630     0.0647     0.0040 0.949 1.000
+
+New/Additional Parameters
+  A1B1                0.086     0.0849     0.0286     0.0284     0.0008 0.942 0.913
+  A2B2                0.088     0.0869     0.0337     0.0334     0.0011 0.946 0.773
+  A1DB2               0.020     0.0201     0.0082     0.0083     0.0001 0.925 0.805
+  TOTMED              0.194     0.1919     0.0472     0.0473     0.0022 0.955 0.991
+  TOTAL               0.426     0.4279     0.0909     0.0920     0.0082 0.943 0.995
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Average Condition Number for the Information Matrix      0.106E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           NU
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+      1           0             0             0             0
+
+
+           LAMBDA
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+ BEH_INT            0             0             0             0
+ THO_FAV            0             0             0             0
+ CURIOSIT           0             0             0             0
+ CONDITIO           0             0             0             0
+
+
+           THETA
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+ BEH_INT            0
+ THO_FAV            0             0
+ CURIOSIT           0             0             0
+ CONDITIO           0             0             0             0
+
+
+           ALPHA
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+      1           1             2             3             0
+
+
+           BETA
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+ BEH_INT            0             4             5             6
+ THO_FAV            0             0             7             8
+ CURIOSIT           0             0             0             9
+ CONDITIO           0             0             0             0
+
+
+           PSI
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+ BEH_INT           10
+ THO_FAV            0            11
+ CURIOSIT           0             0            12
+ CONDITIO           0             0             0             0
+
+
+     PARAMETER SPECIFICATION FOR THE ADDITIONAL PARAMETERS
+
+
+           New/Additional Parameters
+              A1B1          A2B2          A1DB2         TOTMED        TOTAL
+              ________      ________      ________      ________      ________
+ 1                 13            14            15            16            17
+
+
+     STARTING VALUES
+
+
+           NU
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+      1         0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+ BEH_INT        1.000         0.000         0.000         0.000
+ THO_FAV        0.000         1.000         0.000         0.000
+ CURIOSIT       0.000         0.000         1.000         0.000
+ CONDITIO       0.000         0.000         0.000         1.000
+
+
+           THETA
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+ BEH_INT        0.000
+ THO_FAV        0.000         0.000
+ CURIOSIT       0.000         0.000         0.000
+ CONDITIO       0.000         0.000         0.000         0.000
+
+
+           ALPHA
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+      1        -0.119        -0.131        -0.164         0.501
+
+
+           BETA
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+ BEH_INT        0.000         0.342         0.267         0.233
+ THO_FAV        0.000         0.000         0.186         0.257
+ CURIOSIT       0.000         0.000         0.000         0.321
+ CONDITIO       0.000         0.000         0.000         0.000
+
+
+           PSI
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+ BEH_INT        0.739
+ THO_FAV        0.000         0.941
+ CURIOSIT       0.000         0.000         0.974
+ CONDITIO       0.000         0.000         0.000         0.251
+
+
+     STARTING VALUES FOR THE ADDITIONAL PARAMETERS
+
+
+           New/Additional Parameters
+              A1B1          A2B2          A1DB2         TOTMED        TOTAL
+              ________      ________      ________      ________      ________
+ 1              0.086         0.088         0.020         0.194         0.426
+
+
+     POPULATION VALUES
+
+
+           NU
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+ 1              0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+ BEH_INT        1.000         0.000         0.000         0.000
+ THO_FAV        0.000         1.000         0.000         0.000
+ CURIOSIT       0.000         0.000         1.000         0.000
+ CONDITIO       0.000         0.000         0.000         1.000
+
+
+           THETA
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+ BEH_INT        0.000
+ THO_FAV        0.000         0.000
+ CURIOSIT       0.000         0.000         0.000
+ CONDITIO       0.000         0.000         0.000         0.000
+
+
+           ALPHA
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+ 1             -0.119        -0.131        -0.164         0.501
+
+
+           BETA
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+ BEH_INT        0.000         0.342         0.267         0.233
+ THO_FAV        0.000         0.000         0.186         0.257
+ CURIOSIT       0.000         0.000         0.000         0.321
+ CONDITIO       0.000         0.000         0.000         0.000
+
+
+           PSI
+              BEH_INT       THO_FAV       CURIOSIT      CONDITIO
+              ________      ________      ________      ________
+ BEH_INT        0.739
+ THO_FAV        0.000         0.941
+ CURIOSIT       0.000         0.000         0.974
+ CONDITIO       0.000         0.000         0.000         0.251
+
+
+DIAGRAM INFORMATION
+
+  Mplus diagrams are currently not available for Monte Carlo analysis.
+  No diagram output was produced.
+
+
+     Beginning Time:  22:41:15
+        Ending Time:  22:41:17
+       Elapsed Time:  00:00:02
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2015 Muthen & Muthen

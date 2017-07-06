@@ -1,0 +1,86 @@
+VERSION 1.1.0
+INPUT
+TITLE:
+
+  Study 3 in: Kupor, Daniella M and Zakary L. Tormala (2015),
+  "Persuasion, Interrupted: The Effect of Momentary Interruptions
+  on Message Processing and Persuasion," Journal of Consumer Research,
+  vol 42, 300-315.
+
+DATA:
+  FILE = Coffee_ssd_us.dat;
+  TYPE = means stdeviations correlation;
+  NOBSERVATIONS = 223;
+VARIABLE:
+  NAMES = conditio curiosit tho_fav beh_int;
+OUTPUT:
+  STDY;
+MODEL:
+  curiosit ON conditio (a1);
+  tho_fav  ON conditio (a2);
+  tho_fav  ON curiosit (d);
+  beh_int  ON conditio (cp);
+  beh_int  ON curiosit (b1);
+  beh_int  ON tho_fav  (b2);
+INPUT_END
+2
+0
+2
+2
+ML
+1
+GENERAL
+0
+3
+0
+1
+curiosit tho_fav beh_int conditio
+4
+1 2 3 0
+0
+0
+1 1 conditio curiosit    0.701    0.288
+91 1 conditio curiosit a1
+1 1 conditio tho_fav    0.092    0.047
+91 1 conditio tho_fav a2
+1 1 curiosit tho_fav    0.030    0.011
+91 1 curiosit tho_fav d
+1 1 conditio beh_int    0.184    0.093
+91 1 conditio beh_int cp
+1 1 curiosit beh_int    0.097    0.022
+91 1 curiosit beh_int b1
+1 1 tho_fav beh_int    0.761    0.132
+91 1 tho_fav beh_int b2
+4 1 curiosit    4.613    0.437
+4 1 tho_fav    0.119    0.011
+4 1 beh_int    0.466    0.044
+21 1 conditio curiosit    0.322    0.130
+91 1 conditio curiosit a1
+21 1 conditio tho_fav    0.258    0.130
+91 1 conditio tho_fav a2
+21 1 curiosit tho_fav    0.186    0.065
+91 1 curiosit tho_fav d
+21 1 conditio beh_int    0.232    0.117
+91 1 conditio beh_int cp
+21 1 curiosit beh_int    0.267    0.058
+91 1 curiosit beh_int b1
+21 1 tho_fav beh_int    0.341    0.056
+91 1 tho_fav beh_int b2
+24 1 curiosit    0.974    0.021
+24 1 tho_fav    0.941    0.031
+24 1 beh_int    0.739    0.051
+31 1 conditio curiosit    0.701    0.288
+91 1 conditio curiosit a1
+31 1 conditio tho_fav    0.092    0.047
+91 1 conditio tho_fav a2
+31 1 curiosit tho_fav    0.030    0.011
+91 1 curiosit tho_fav d
+31 1 conditio beh_int    0.184    0.093
+91 1 conditio beh_int cp
+31 1 curiosit beh_int    0.097    0.022
+91 1 curiosit beh_int b1
+31 1 tho_fav beh_int    0.761    0.132
+91 1 tho_fav beh_int b2
+34 1 curiosit    4.613    0.437
+34 1 tho_fav    0.119    0.011
+34 1 beh_int    0.466    0.044

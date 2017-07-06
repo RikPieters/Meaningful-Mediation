@@ -1,0 +1,144 @@
+VERSION 1.1.0
+INPUT
+TITLE:
+
+  Re-analysis of Experiment 2 in:
+  Kim Sara and Ann L. McGill (2011),
+  "Gaming with Mr. Slot or Gaming with the Slot Machine?
+  Power, Antropomorphism, and Risk Perception,"
+  Journal of Consumer Research, 38 (1), 94-107
+DATA:
+  FILE = SkinCancer-Experiment2-item-SSD.dat;
+  TYPE = means stdeviations correlation;
+  NOBSERVATIONS = 84;
+VARIABLE:
+  NAMES = pow1-pow4 risk1-risk3 x1_p x2_h x1x2;
+  USEVARIABLES = pow1-risk3;
+OUTPUT:
+  STDY;
+  SAMPSTAT;
+MODEL:
+  power@1;
+  power BY pow1* pow2-pow4 (l1-l4);
+  pow1-pow4 (ve1-ve4);
+  risk@1;
+  risk BY risk1* risk2-risk3 (l5-l7);
+  risk1-risk3 (ve5-ve7);
+  power WITH risk (rmy);
+INPUT_END
+2
+0
+2
+2
+ML
+1
+GENERAL
+0
+7
+2
+0
+pow1 pow2 pow3 pow4 risk1 risk2 risk3 power risk
+1
+-1 -1 -1 -1 -1 -1 -1 0 0
+0
+2
+power
+pow1 pow2 pow3 pow4
+risk
+risk1 risk2 risk3
+1 1 power pow1    1.167    0.214
+91 1 power pow1 l1
+1 1 power pow2    0.763    0.171
+91 1 power pow2 l2
+1 1 power pow3    1.115    0.170
+91 1 power pow3 l3
+1 1 power pow4    0.632    0.179
+91 1 power pow4 l4
+1 1 risk risk1    1.473    0.161
+91 1 risk risk1 l5
+1 1 risk risk2    1.540    0.146
+91 1 risk risk2 l6
+1 1 risk risk3    1.594    0.167
+91 1 risk risk3 l7
+2 1 power risk   -0.467    0.111
+92 1 power risk rmy
+4 1 pow1    1.970    0.412
+94 1 pow1 ve1
+4 1 pow2    1.504    0.269
+94 1 pow2 ve2
+4 1 pow3    0.861    0.271
+94 1 pow3 ve3
+4 1 pow4    1.791    0.299
+94 1 pow4 ve4
+4 1 risk1    0.942    0.193
+94 1 risk1 ve5
+4 1 risk2    0.437    0.151
+94 1 risk2 ve6
+4 1 risk3    0.896    0.202
+94 1 risk3 ve7
+5 1 power    1.000    0.000
+5 1 risk    1.000    0.000
+21 1 power pow1    0.639    0.092
+91 1 power pow1 l1
+21 1 power pow2    0.528    0.100
+91 1 power pow2 l2
+21 1 power pow3    0.769    0.086
+91 1 power pow3 l3
+21 1 power pow4    0.427    0.108
+91 1 power pow4 l4
+21 1 risk risk1    0.835    0.041
+91 1 risk risk1 l5
+21 1 risk risk2    0.919    0.031
+91 1 risk risk2 l6
+21 1 risk risk3    0.860    0.038
+91 1 risk risk3 l7
+22 1 power risk   -0.467    0.111
+92 1 power risk rmy
+24 1 pow1    0.591    0.117
+94 1 pow1 ve1
+24 1 pow2    0.721    0.106
+94 1 pow2 ve2
+24 1 pow3    0.409    0.132
+94 1 pow3 ve3
+24 1 pow4    0.818    0.093
+94 1 pow4 ve4
+24 1 risk1    0.303    0.068
+94 1 risk1 ve5
+24 1 risk2    0.156    0.057
+94 1 risk2 ve6
+24 1 risk3    0.261    0.065
+94 1 risk3 ve7
+25 1 power    1.000    0.000
+25 1 risk    1.000    0.000
+31 1 power pow1    1.167    0.214
+91 1 power pow1 l1
+31 1 power pow2    0.763    0.171
+91 1 power pow2 l2
+31 1 power pow3    1.115    0.170
+91 1 power pow3 l3
+31 1 power pow4    0.632    0.179
+91 1 power pow4 l4
+31 1 risk risk1    1.473    0.161
+91 1 risk risk1 l5
+31 1 risk risk2    1.540    0.146
+91 1 risk risk2 l6
+31 1 risk risk3    1.594    0.167
+91 1 risk risk3 l7
+32 1 power risk   -0.467    0.111
+92 1 power risk rmy
+34 1 pow1    1.970    0.412
+94 1 pow1 ve1
+34 1 pow2    1.504    0.269
+94 1 pow2 ve2
+34 1 pow3    0.861    0.271
+94 1 pow3 ve3
+34 1 pow4    1.791    0.299
+94 1 pow4 ve4
+34 1 risk1    0.942    0.193
+94 1 risk1 ve5
+34 1 risk2    0.437    0.151
+94 1 risk2 ve6
+34 1 risk3    0.896    0.202
+94 1 risk3 ve7
+35 1 power    1.000    0.000
+35 1 risk    1.000    0.000

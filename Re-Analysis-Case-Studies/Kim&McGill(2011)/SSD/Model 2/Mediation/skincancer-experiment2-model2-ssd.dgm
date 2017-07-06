@@ -1,0 +1,151 @@
+VERSION 1.1.0
+INPUT
+TITLE:
+
+  Re-analysis of Experiment 2 in:
+  Kim Sara and Ann L. McGill (2011),
+  "Gaming with Mr. Slot or Gaming with the Slot Machine?
+  Power, Antropomorphism, and Risk Perception,"
+  Journal of Consumer Research, 38 (1), 94-107
+
+DATA:
+  FILE = SkinCancer-Experiment2-item-SSD.dat;
+  TYPE = means stdeviations correlation;
+  NOBSERVATIONS = 84;
+VARIABLE:
+  NAMES = pow1-pow4 risk1-risk3 x1_p x2_h x1x2 ;
+OUTPUT:
+  STDY;
+  SAMPSTAT;
+MODEL:
+  power@1;
+  power BY pow1* pow2-pow4;
+  risk@1;
+  risk BY risk1* risk2-risk3;
+  power ON x1_p (a1);
+  power ON x2_h (a2);
+  power ON x1x2 (a3);
+  risk ON power (b);
+  risk ON x1_p (cp1);
+  risk ON x2_h (cp2);
+  risk ON x1x2 (cp3);
+INPUT_END
+2
+0
+2
+2
+ML
+1
+GENERAL
+0
+7
+2
+3
+pow1 pow2 pow3 pow4 risk1 risk2 risk3 power risk x1_p x2_h x1x2
+3
+-1 -1 -1 -1 -1 -1 -1 1 2 0 0 0
+0
+2
+power
+pow1 pow2 pow3 pow4
+risk
+risk1 risk2 risk3
+1 1 power pow1    0.971    0.191
+1 1 power pow2    0.610    0.154
+1 1 power pow3    1.087    0.159
+1 1 power pow4    0.625    0.158
+1 1 risk risk1    1.279    0.148
+1 1 risk risk2    1.338    0.137
+1 1 risk risk3    1.388    0.154
+1 1 x1_p power   -0.063    0.130
+91 1 x1_p power a1
+1 1 x2_h power   -0.094    0.130
+91 1 x2_h power a2
+1 1 x1x2 power    0.465    0.140
+91 1 x1x2 power a3
+1 1 x1_p risk    0.142    0.122
+91 1 x1_p risk cp1
+1 1 x2_h risk   -0.019    0.122
+91 1 x2_h risk cp2
+1 1 x1x2 risk   -0.133    0.138
+91 1 x1x2 risk cp3
+1 1 power risk   -0.432    0.155
+91 1 power risk b
+4 1 pow1    2.185    0.406
+4 1 pow2    1.634    0.275
+4 1 pow3    0.667    0.267
+4 1 pow4    1.717    0.289
+4 1 risk1    0.949    0.193
+4 1 risk2    0.440    0.150
+4 1 risk3    0.886    0.200
+4 1 power    1.000    0.000
+4 1 risk    1.000    0.000
+2 1 x1_p x2_h  999.000  999.000
+2 1 x1_p x1x2  999.000  999.000
+2 1 x2_h x1x2  999.000  999.000
+21 1 power pow1    0.586    0.092
+21 1 power pow2    0.466    0.102
+21 1 power pow3    0.826    0.079
+21 1 power pow4    0.465    0.102
+21 1 risk risk1    0.834    0.041
+21 1 risk risk2    0.918    0.031
+21 1 risk risk3    0.862    0.037
+21 1 x1_p power   -0.057    0.117
+91 1 x1_p power a1
+21 1 x2_h power   -0.085    0.117
+91 1 x2_h power a2
+21 1 x1x2 power    0.422    0.105
+91 1 x1x2 power a3
+21 1 x1_p risk    0.124    0.104
+91 1 x1_p risk cp1
+21 1 x2_h risk   -0.016    0.106
+91 1 x2_h risk cp2
+21 1 x1x2 risk   -0.115    0.120
+91 1 x1x2 risk cp3
+21 1 power risk   -0.414    0.127
+91 1 power risk b
+24 1 pow1    0.656    0.108
+24 1 pow2    0.783    0.095
+24 1 pow3    0.317    0.130
+24 1 pow4    0.784    0.095
+24 1 risk1    0.305    0.068
+24 1 risk2    0.157    0.057
+24 1 risk3    0.258    0.064
+24 1 power    0.823    0.090
+24 1 risk    0.756    0.100
+22 1 x1_p x2_h  999.000  999.000
+22 1 x1_p x1x2  999.000  999.000
+22 1 x2_h x1x2  999.000  999.000
+31 1 power pow1    1.070    0.210
+31 1 power pow2    0.673    0.170
+31 1 power pow3    1.199    0.165
+31 1 power pow4    0.689    0.174
+31 1 risk risk1    1.471    0.161
+31 1 risk risk2    1.539    0.146
+31 1 risk risk3    1.597    0.167
+31 1 x1_p power   -0.057    0.117
+91 1 x1_p power a1
+31 1 x2_h power   -0.085    0.117
+91 1 x2_h power a2
+31 1 x1x2 power    0.422    0.105
+91 1 x1x2 power a3
+31 1 x1_p risk    0.124    0.104
+91 1 x1_p risk cp1
+31 1 x2_h risk   -0.016    0.106
+91 1 x2_h risk cp2
+31 1 x1x2 risk   -0.115    0.120
+91 1 x1x2 risk cp3
+31 1 power risk   -0.414    0.127
+91 1 power risk b
+34 1 pow1    2.185    0.406
+34 1 pow2    1.634    0.275
+34 1 pow3    0.667    0.267
+34 1 pow4    1.717    0.289
+34 1 risk1    0.949    0.193
+34 1 risk2    0.440    0.150
+34 1 risk3    0.886    0.200
+34 1 power    0.823    0.090
+34 1 risk    0.756    0.100
+32 1 x1_p x2_h  999.000  999.000
+32 1 x1_p x1x2  999.000  999.000
+32 1 x2_h x1x2  999.000  999.000

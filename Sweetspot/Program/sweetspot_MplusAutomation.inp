@@ -1,0 +1,53 @@
+[[init]]
+iterators = nobs RTRU VE;
+nobs = 50 100 150 200 250 300 400 500 1000;
+RTRU =   .10 .11 .12 .13 .14 .15 .16 .17 .18 .19
+         .20 .21 .22 .23 .24 .25 .26 .27 .28 .29 
+         .30 .31 .32 .33 .34 .35 .36 .37 .38 .39 
+         .40 .41 .42 .43 .44 .45 .46 .47 .48 .49
+         .50 .51 .52 .53 .54 .55 .56 .57 .58 .59
+         .60 .61 .62 .63 .64 .65 .66 .67 .68 .69 
+         .70 .71 .72 .73 .74 .75 .76 .77 .78 .79
+         .80 .81 .82 .83 .84 .85 .86 .87 .88 .89
+         .90 .91 .92 .93 .94 .95;
+VE = .50 .40 .30 .20 .10;
+filename = "[[nobs]]-[[RTRU]]-[[VE]].inp";
+[[/init]]
+TITLE:
+  ! input program to Mplus Automation in R
+  MONTE CARLO - 
+  DISCRIMINANT VALIDITY IN MEDIATION MODELS
+  USING "SINGLE INDICATOR SEM"
+MONTECARLO:
+  NAMES = m y;     ! variable names
+  NOBS = [[nobs]]; ! sample size
+  NREPS = 1000;    ! number of replications
+MODEL POPULATION:
+! Measurement Model  
+  fm by m@1; ! loading fixed to 1
+  fy by y@1; ! loading fixed to 1
+  fm-fy@1;   ! variance of LVs fixed to 1
+  [m-y@0];   ! mean of m and y fixed to 0
+! Item error variance for standardized measures: var(e)=(1-CR)
+  m-y@[[VE]]; ! set CR of mediator
+! Structural Model
+  fm WITH fy@[[RTRU]];  ! true correlation fixed
+MODEL:	
+! Measurement Model
+  fm BY m@1; ! factor loading fixed to 1 
+  m (ve);    ! residual variance of m estimated, with label (ve) 
+  fy BY y@1; ! loading fixed to 1
+  y (ve);    ! same label ensures same residual variance 
+  fm-fy@1;   ! variance of LVs fixed to 1
+  [m-y@0];   ! mean of m and y fixed to 0
+! Structural Model
+  fy WITH fm*[[RTRU]] (b); ! true correlated estimated
+MODEL CONSTRAINT:
+  NEW (reli rtru* robs dvi_l dvi_s); 
+  reli = 1-ve; !      
+  rtru = b;
+  robs = rtru*SQRT(reli*reli); ! robs = rtru*reli, when reli_m = reli_y
+  ! discriminant-validity-index_lenient: rtru < 1
+  dvi_l  = 1 - rtru;  
+  ! discriminant-validity-index_strict: var extracted > var shared
+  dvi_s = reli - rtru^2; 
