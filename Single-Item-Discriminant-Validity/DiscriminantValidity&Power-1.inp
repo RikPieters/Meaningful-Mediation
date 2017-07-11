@@ -1,0 +1,64 @@
+TITLE:
+  MONTE CARLO - DISCRIMINANT VALIDITY IN MEDIATION MODELS
+  USING "SINGLE INDICATOR SEM"
+
+  ! Note 1: 
+  User inputs 4 units of information in lines that have ! INPUT 1-4:
+
+  ! Note 2: 
+  Multi-item measure treated as single-item with known reliability.
+  This assumes strictly parallel items (same loadings and error variances).
+
+  ! Note 3: 
+  Remarks and instructions are behind ! exclamation marks
+MONTECARLO:
+  NAMES = m y;   ! Variable names
+  NREPS = 1000;  ! Number of replications
+  SEED = 123456; ! Seed to ensure same results across computers
+   
+!*******************************************************************************!
+! SAMPLE SIZE:
+!*******************************************************************************!
+  NOBS = 223;    ! INPUT 1: give sample size. Here NOBS = 223
+!*******************************************************************************!
+
+MODEL POPULATION:
+  fm BY m@1;     ! Factor loading fixed to 1 
+  fy BY y@1;     ! Factor loading fixed to 1
+  fm-fy@1;       ! Variance of LVs fixed to 1
+  [m-y@0];       ! Mean of m and y fixed to 0
+  fy WITH fm@0;  ! True correlation between m and y fixed to zero
+
+!*******************************************************************************!
+! RELIABILITY OF M AND Y, AND OBSERVED CORRELATION:
+!*******************************************************************************!
+  m@.07;         ! INPUT 2: Give residual variance of m: (1 - reliability of m) 
+  y@.17;         ! INPUT 3: Give residual variance of y: (1 - reliability of y)
+  m WITH y@.356; ! INPUT 4: Give observed correlation between m and y (no sign)
+!*******************************************************************************!
+
+MODEL:	
+  ! Same as model population, with (labels) to refer to in "model constraint"  
+  fm BY m@1; fy BY y@1; fm-fy@1; 
+  m (ve_m); y (ve_y); [m-y@0]; fy WITH fm@0; m WITH y (cor); 
+   
+  ! Below in NEW(name*number), the number indicates the population value or benchmark
+MODEL CONSTRAINT:
+  NEW (reli_m*.93 reli_y*.83 r_obs*.356 r_tru*.405 dvi_l*0 dvi_s_m*0 dvi_s_y*0); 
+  reli_m = 1 - ve_m;                             ! reliability of m  
+  reli_y = 1 - ve_y;                             ! reliability of y   
+  r_obs = cor;                                   ! observed correlation m-y
+  r_tru = cor/SQRT(reli_m*reli_y);               ! "true" correlation m-y
+! lenient discriminant validity index: rtru < 1
+  dvi_l  = 1 - r_tru;                            ! dvi_l for both 
+! strict discriminant validity index (dvi_s): var extracted > var shared
+  dvi_s_m = reli_m - r_tru^2;                    ! dvi_s for m
+  dvi_s_y = reli_y - r_tru^2;                    ! dvi_s for y 
+
+ ! Interpretation:
+ ! For Statistical Power check section "New/Additional Parameters"
+ ! the columns "ESTIMATES average" and "% Sig coeff".
+
+ ! Discriminant Validity is supported if:
+ ! (1) DVI's ("ESTIMATES average") are larger than zero, and 
+ ! (2) have > 80% significant coefficients ("% Sig coeff")
