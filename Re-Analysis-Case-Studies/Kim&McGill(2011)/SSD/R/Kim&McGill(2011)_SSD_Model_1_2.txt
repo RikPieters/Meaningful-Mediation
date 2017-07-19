@@ -1,0 +1,458 @@
+Kim and McGill (2011, Study 2) - SSD - Model 1a
+
+Model 1a is unstandardized solution
+lavaan (0.5-20) converged normally after  22 iterations
+
+  Number of observations                            84
+
+  Estimator                                         ML
+  Minimum Function Test Statistic                0.000
+  Degrees of freedom                                 0
+  Minimum Function Value               0.0000000000000
+
+Model test baseline model:
+
+  Minimum Function Test Statistic               26.807
+  Degrees of freedom                                 7
+  P-value                                        0.000
+
+User model versus baseline model:
+
+  Comparative Fit Index (CFI)                    1.000
+  Tucker-Lewis Index (TLI)                       1.000
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)               -630.188
+  Loglikelihood unrestricted model (H1)       -630.188
+
+  Number of free parameters                         11
+  Akaike (AIC)                                1282.376
+  Bayesian (BIC)                              1309.115
+  Sample-size adjusted Bayesian (BIC)         1274.416
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.000
+  90 Percent Confidence Interval          0.000  0.000
+  P-value RMSEA <= 0.05                          1.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.000
+
+Parameter Estimates:
+
+  Information                                 Expected
+  Standard Errors                             Standard
+
+Regressions:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+  control ~                                                             
+    x1_p      (a1)   -0.038    0.116   -0.327    0.743   -0.265    0.189
+    x2_h      (a2)   -0.057    0.116   -0.496    0.620   -0.284    0.169
+    x1x2      (a3)    0.366    0.116    3.164    0.002    0.139    0.593
+  risk ~                                                                
+    x1_p     (cp1)    0.224    0.162    1.385    0.166   -0.093    0.541
+    x2_h     (cp2)   -0.012    0.162   -0.074    0.941   -0.329    0.306
+    x1x2     (cp3)   -0.274    0.171   -1.598    0.110   -0.609    0.062
+    control    (b)   -0.466    0.152   -3.061    0.002   -0.765   -0.168
+
+Intercepts:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+    control           4.255    0.128   33.137    0.000    4.004    4.507
+    risk              8.574    0.673   12.741    0.000    7.255    9.893
+
+Variances:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+    control           1.101    0.170    6.481    0.000    0.768    1.433
+    risk              2.148    0.331    6.481    0.000    1.498    2.797
+
+R-Square:
+                   Estimate
+    control           0.107
+    risk              0.186
+
+Defined Parameters:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+    a1b               0.018    0.054    0.326    0.745   -0.089    0.124
+    a2b               0.027    0.055    0.490    0.624   -0.080    0.134
+    a3b              -0.171    0.078   -2.200    0.028   -0.323   -0.019
+    total_X1X2       -0.444    0.171   -2.606    0.009   -0.779   -0.110
+    pm                0.385    0.202    1.900    0.057   -0.012    0.781
+    diff              0.103    0.204    0.503    0.615   -0.297    0.502
+
+
+Kim and McGill (2011, Study 2) - SSD - Model 1b
+
+Model 1b is partially standardized solution -- see Appendix 2 - Table A2.2
+lavaan (0.5-20) converged normally after  13 iterations
+
+  Number of observations                            84
+
+  Estimator                                         ML
+  Minimum Function Test Statistic                0.000
+  Degrees of freedom                                 0
+  Minimum Function Value               0.0000000000000
+
+Model test baseline model:
+
+  Minimum Function Test Statistic               26.807
+  Degrees of freedom                                 7
+  P-value                                        0.000
+
+User model versus baseline model:
+
+  Comparative Fit Index (CFI)                    1.000
+  Tucker-Lewis Index (TLI)                       1.000
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)               -579.647
+  Loglikelihood unrestricted model (H1)       -579.647
+
+  Number of free parameters                         11
+  Akaike (AIC)                                1181.295
+  Bayesian (BIC)                              1208.034
+  Sample-size adjusted Bayesian (BIC)         1173.334
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.000
+  90 Percent Confidence Interval          0.000  0.000
+  P-value RMSEA <= 0.05                          1.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.000
+
+Parameter Estimates:
+
+  Information                                 Expected
+  Standard Errors                             Standard
+
+Regressions:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+  control ~                                                             
+    x1_p      (a1)   -0.034    0.104   -0.327    0.743   -0.237    0.169
+    x2_h      (a2)   -0.051    0.104   -0.496    0.620   -0.255    0.152
+    x1x2      (a3)    0.328    0.104    3.164    0.002    0.125    0.531
+  risk ~                                                                
+    x1_p     (cp1)    0.137    0.099    1.385    0.166   -0.057    0.331
+    x2_h     (cp2)   -0.007    0.099   -0.074    0.941   -0.202    0.187
+    x1x2     (cp3)   -0.167    0.105   -1.598    0.110   -0.373    0.038
+    control    (b)   -0.319    0.104   -3.061    0.002   -0.523   -0.115
+
+Intercepts:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+    control           0.162    0.115    1.412    0.158   -0.063    0.388
+    risk             -0.100    0.111   -0.900    0.368   -0.318    0.118
+
+Variances:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+    control           0.882    0.136    6.481    0.000    0.615    1.149
+    risk              0.804    0.124    6.481    0.000    0.561    1.048
+
+R-Square:
+                   Estimate
+    control           0.107
+    risk              0.186
+
+Defined Parameters:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+    a1b               0.011    0.033    0.326    0.745   -0.054    0.076
+    a2b               0.016    0.033    0.490    0.624   -0.049    0.082
+    a3b              -0.105    0.048   -2.200    0.028   -0.198   -0.011
+    total_X1X2       -0.272    0.104   -2.606    0.009   -0.477   -0.067
+    pm                0.385    0.202    1.900    0.057   -0.012    0.781
+    diff              0.063    0.125    0.503    0.615   -0.182    0.307
+
+Kim and McGill (2011, Study 2) - SSD - Model 1c
+
+Model 1c is standardized solution
+lavaan (0.5-20) converged normally after  11 iterations
+
+  Number of observations                            84
+
+  Estimator                                         ML
+  Minimum Function Test Statistic                0.000
+  Degrees of freedom                                 0
+  Minimum Function Value               0.0000000000000
+
+Model test baseline model:
+
+  Minimum Function Test Statistic               26.807
+  Degrees of freedom                                 7
+  P-value                                        0.000
+
+User model versus baseline model:
+
+  Comparative Fit Index (CFI)                    1.000
+  Tucker-Lewis Index (TLI)                       1.000
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)               -579.063
+  Loglikelihood unrestricted model (H1)       -579.063
+
+  Number of free parameters                         11
+  Akaike (AIC)                                1180.125
+  Bayesian (BIC)                              1206.864
+  Sample-size adjusted Bayesian (BIC)         1172.164
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.000
+  90 Percent Confidence Interval          0.000  0.000
+  P-value RMSEA <= 0.05                          1.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.000
+
+Parameter Estimates:
+
+  Information                                 Expected
+  Standard Errors                             Standard
+
+Regressions:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+  control ~                                                             
+    x1_p      (a1)   -0.034    0.103   -0.327    0.743   -0.236    0.169
+    x2_h      (a2)   -0.052    0.104   -0.496    0.620   -0.256    0.153
+    x1x2      (a3)    0.330    0.104    3.164    0.002    0.125    0.534
+  risk ~                                                                
+    x1_p     (cp1)    0.137    0.099    1.385    0.166   -0.057    0.330
+    x2_h     (cp2)   -0.007    0.100   -0.074    0.941   -0.203    0.188
+    x1x2     (cp3)   -0.168    0.105   -1.598    0.110   -0.374    0.038
+    control    (b)   -0.319    0.104   -3.061    0.002   -0.523   -0.115
+
+Intercepts:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+    control           0.000    0.102    0.000    1.000   -0.201    0.201
+    risk              0.000    0.098    0.000    1.000   -0.192    0.192
+
+Variances:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+    control           0.882    0.136    6.481    0.000    0.615    1.149
+    risk              0.804    0.124    6.481    0.000    0.561    1.048
+
+R-Square:
+                   Estimate
+    control           0.107
+    risk              0.186
+
+Defined Parameters:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+    a1b               0.011    0.033    0.326    0.745   -0.054    0.076
+    a2b               0.017    0.034    0.490    0.624   -0.050    0.083
+    a3b              -0.105    0.048   -2.200    0.028   -0.199   -0.011
+    total_X1X2       -0.273    0.105   -2.606    0.009   -0.479   -0.068
+    pm                0.385    0.202    1.900    0.057   -0.012    0.781
+    diff              0.063    0.125    0.503    0.615   -0.183    0.309
+
+Kim and McGill (2011, Study 2) - SSD - Model 2 -- See Appendic A2.2
+
+Model 2 is SEM, partially standardized
+lavaan (0.5-20) converged normally after  24 iterations
+
+  Number of observations                            84
+
+  Estimator                                         ML
+  Minimum Function Test Statistic               41.609
+  Degrees of freedom                                28
+  P-value (Chi-square)                           0.047
+
+Model test baseline model:
+
+  Minimum Function Test Statistic              286.987
+  Degrees of freedom                                42
+  P-value                                        0.000
+
+User model versus baseline model:
+
+  Comparative Fit Index (CFI)                    0.944
+  Tucker-Lewis Index (TLI)                       0.917
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -1355.827
+  Loglikelihood unrestricted model (H1)      -1335.022
+
+  Number of free parameters                         21
+  Akaike (AIC)                                2753.654
+  Bayesian (BIC)                              2804.701
+  Sample-size adjusted Bayesian (BIC)         2738.456
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.076
+  90 Percent Confidence Interval          0.009  0.122
+  P-value RMSEA <= 0.05                          0.186
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.056
+
+Parameter Estimates:
+
+  Information                                 Expected
+  Standard Errors                             Standard
+
+Latent Variables:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+  control =~                                                            
+    pow1              0.971    0.191    5.071    0.000    0.596    1.346
+    pow2              0.610    0.154    3.950    0.000    0.307    0.913
+    pow3              1.087    0.159    6.847    0.000    0.776    1.399
+    pow4              0.625    0.158    3.946    0.000    0.314    0.935
+  risk =~                                                               
+    risk1             1.279    0.148    8.627    0.000    0.988    1.569
+    risk2             1.338    0.137    9.746    0.000    1.069    1.607
+    risk3             1.388    0.154    9.004    0.000    1.086    1.690
+
+Regressions:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+  control ~                                                             
+    x1_p      (a1)   -0.063    0.130   -0.484    0.628   -0.317    0.191
+    x2_h      (a2)   -0.094    0.130   -0.720    0.472   -0.348    0.161
+    x1x2      (a3)    0.465    0.140    3.313    0.001    0.190    0.740
+  risk ~                                                                
+    x1_p     (cp1)    0.142    0.122    1.172    0.241   -0.096    0.381
+    x2_h     (cp2)   -0.019    0.122   -0.154    0.877   -0.257    0.219
+    x1x2     (cp3)   -0.133    0.138   -0.960    0.337   -0.403    0.138
+    control    (b)   -0.432    0.155   -2.798    0.005   -0.735   -0.130
+
+Variances:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+    control           1.000                               1.000    1.000
+    risk              1.000                               1.000    1.000
+    pow1              2.185    0.406    5.382    0.000    1.389    2.981
+    pow2              1.634    0.275    5.945    0.000    1.095    2.172
+    pow3              0.667    0.267    2.495    0.013    0.143    1.191
+    pow4              1.717    0.289    5.947    0.000    1.151    2.282
+    risk1             0.949    0.193    4.928    0.000    0.571    1.326
+    risk2             0.440    0.150    2.936    0.003    0.146    0.734
+    risk3             0.886    0.200    4.433    0.000    0.494    1.278
+
+R-Square:
+                   Estimate
+    control           0.177
+    risk              0.244
+    pow1              0.344
+    pow2              0.217
+    pow3              0.683
+    pow4              0.216
+    risk1             0.695
+    risk2             0.843
+    risk3             0.742
+
+Defined Parameters:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+    a1b               0.027    0.057    0.477    0.633   -0.084    0.139
+    a2b               0.040    0.058    0.698    0.485   -0.073    0.154
+    a3b              -0.201    0.093   -2.159    0.031   -0.384   -0.019
+    total_X1X2       -0.334    0.130   -2.563    0.010   -0.589   -0.078
+    pmx1x2            0.603    0.313    1.928    0.054   -0.010    1.216
+    diff             -0.069    0.196   -0.349    0.727   -0.453    0.316
+
+
+Kim and McGill (2011, Study 2) - SSD - Reliability and Discriminant Validity
+
+
+lavaan (0.5-20) converged normally after  26 iterations
+
+  Number of observations                            84
+
+  Estimator                                         ML
+  Minimum Function Test Statistic               33.175
+  Degrees of freedom                                13
+  P-value (Chi-square)                           0.002
+
+Model test baseline model:
+
+  Minimum Function Test Statistic              263.082
+  Degrees of freedom                                21
+  P-value                                        0.000
+
+User model versus baseline model:
+
+  Comparative Fit Index (CFI)                    0.917
+  Tucker-Lewis Index (TLI)                       0.865
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -1007.887
+  Loglikelihood unrestricted model (H1)       -991.299
+
+  Number of free parameters                         15
+  Akaike (AIC)                                2045.774
+  Bayesian (BIC)                              2082.236
+  Sample-size adjusted Bayesian (BIC)         2034.918
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.136
+  90 Percent Confidence Interval          0.079  0.194
+  P-value RMSEA <= 0.05                          0.010
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.067
+
+Parameter Estimates:
+
+  Information                                 Expected
+  Standard Errors                             Standard
+
+Latent Variables:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+  control =~                                                            
+    pow1      (l1)    1.167    0.214    5.458    0.000    0.748    1.586
+    pow2      (l2)    0.763    0.171    4.453    0.000    0.427    1.099
+    pow3      (l3)    1.115    0.170    6.561    0.000    0.782    1.448
+    pow4      (l4)    0.632    0.179    3.532    0.000    0.281    0.983
+  risk =~                                                               
+    risk1     (l5)    1.474    0.161    9.143    0.000    1.158    1.789
+    risk2     (l6)    1.540    0.146   10.563    0.000    1.254    1.826
+    risk3     (l7)    1.594    0.167    9.541    0.000    1.267    1.921
+
+Covariances:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+  control ~~                                                            
+    risk     (cor)   -0.467    0.111   -4.208    0.000   -0.685   -0.250
+
+Variances:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+    control           1.000                               1.000    1.000
+    pow1      (e1)    1.970    0.412    4.786    0.000    1.163    2.776
+    pow2      (e2)    1.504    0.269    5.589    0.000    0.977    2.032
+    pow3      (e3)    0.861    0.271    3.176    0.001    0.330    1.392
+    pow4      (e4)    1.791    0.299    5.981    0.000    1.204    2.378
+    risk              1.000                               1.000    1.000
+    risk1     (e5)    0.942    0.193    4.892    0.000    0.564    1.319
+    risk2     (e6)    0.437    0.151    2.886    0.004    0.140    0.734
+    risk3     (e7)    0.896    0.202    4.445    0.000    0.501    1.291
+
+R-Square:
+                   Estimate
+    pow1              0.409
+    pow2              0.279
+    pow3              0.591
+    pow4              0.182
+    risk1             0.697
+    risk2             0.844
+    risk3             0.739
+
+Defined Parameters:
+                   Estimate  Std.Err  Z-value  P(>|z|) ci.lower ci.upper
+    CR_cont           0.688    0.055   12.512    0.000    0.580    0.796
+    AVE_cont          0.369    0.059    6.275    0.000    0.254    0.484
+    CR_risk           0.903    0.018   49.192    0.000    0.867    0.939
+    AVE_risk          0.757    0.039   19.590    0.000    0.681    0.833
+    rtrue             0.467    0.111    4.208    0.000    0.250    0.685
+    dvi_l             0.533    0.111    4.797    0.000    0.315    0.750
+    dvi_s_con         0.151    0.114    1.320    0.187   -0.073    0.375
+    dvi_s_ris         0.539    0.104    5.168    0.000    0.334    0.743
+
+
