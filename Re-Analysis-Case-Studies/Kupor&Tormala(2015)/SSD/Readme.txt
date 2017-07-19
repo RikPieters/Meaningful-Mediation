@@ -1,6 +1,7 @@
+The Subdirectories "Mediation" and "Statistical Power contain Mplus input files, 
+SSD, and output files for the mediation models and statistical power estimations in the Appendix of
+Meaningful Meaningful Analysis
 
-Summary Statistics Data (SSD) and Mplus input files to estimate 
-Mediation Models, and to establish Statistical Power for Kupor and Tormala (2015, Study 3), 
-as reported in "Meaningful Mediation Analysis".
+The subdirectory R contains the same to use with the R program
 
 Note: Raw data to conduct mediation analyses are available from the original authors (Kupor and Tormala 2015) 
