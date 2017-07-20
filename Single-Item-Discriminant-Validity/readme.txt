@@ -31,5 +31,5 @@ DO:
 
 Note: Statistical power is "the percentage of replication samples that is statistically significant at p < .05." 
 
-Note: Changing the sample size until this "percentage of significant samples" is larger than 80% 
-indicates the required sample for statistical power at this cutoff.
+Note: Changing the sample size until this "percentage of significant samples" is larger than the 80% cutoff 
+indicates the required sample size for statistical power at this power cutoff.
