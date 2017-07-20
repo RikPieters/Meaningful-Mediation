@@ -4,7 +4,7 @@ Subdirectory R contains R-files and SSD to estimate the mediation models, and ou
 Note: Raw data to conduct mediation analyses are available from the original authors (Kim and McGill 2011) 
 
 
-1. Subbdirectories Model 1 and 2
+1. Subdirectories Model 1 and 2
 Summary Statistics Data (SSD) and Mplus input files to estimate 
 Mediation Models (1 and 2), and discriminant validity for Kim and McGill (2011, Study 2), 
 as reported in "Meaningful Mediation Analysis".
