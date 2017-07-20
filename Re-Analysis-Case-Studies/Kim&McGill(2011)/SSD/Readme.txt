@@ -10,4 +10,4 @@ Mediation Models (1 and 2), and discriminant validity for Kim and McGill (2011, 
 as reported in "Meaningful Mediation Analysis".
 
 2. Subdirectory R
-R code, with a readme-txt withy instructions
+R code, with a readme-txt with instructions
