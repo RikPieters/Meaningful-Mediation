@@ -1,2 +1,2 @@
-Data in STATA format of the literature review for 
-"Meaningful Mediation Analysis" (JCR-vol41-42) 
+Data in STATA format of the literature review (JCR-vol41-42) for 
+"Meaningful Mediation Analysis"  
