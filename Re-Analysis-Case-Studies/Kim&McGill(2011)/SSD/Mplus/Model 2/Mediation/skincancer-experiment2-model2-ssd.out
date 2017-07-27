@@ -1,0 +1,356 @@
+Mplus VERSION 7.4
+MUTHEN & MUTHEN
+07/06/2017   9:27 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+    Re-analysis of Experiment 2 in:
+    Kim Sara and Ann L. McGill (2011),
+    "Gaming with Mr. Slot or Gaming with the Slot Machine?
+    Power, Antropomorphism, and Risk Perception,"
+    Journal of Consumer Research, 38 (1), 94-107
+
+    ! SEM Mediation Model on SSD (item-level)
+    ! Results of SSD analyses converge to but are not identical to raw data analyses
+  DATA:
+    FILE = SkinCancer-Experiment2-item-SSD.dat;
+    TYPE = means stdeviations correlation;
+    NOBSERVATIONS = 84;
+  VARIABLE:
+    NAMES = pow1-pow4 risk1-risk3 x1_p x2_h x1x2 ;
+  MODEL:
+  ! Measurement Model
+    power@1;                   ! Latent variable "power" with variance fixed @1
+    power BY pow1* pow2-pow4;  ! four indicators of "power" (* to estimate freely)
+    risk@1;                    ! Latent variable "risk" with variance fixed @1
+    risk BY risk1* risk2-risk3;! three indicators of "risk" (* to estimate freely)
+  ! Structural Model
+    power ON x1_p (a1);        ! effect of x1_p on "power," label path (a1)
+    power ON x2_h (a2);        ! effect of x1_h on "power," label path (a2)
+    power ON x1x2 (a3);        ! effect of x1x2 on "power," label path (a3)
+    risk ON power (b);         ! b-path "power" -> "risk", label (b)
+    risk ON x1_p (cp1);        ! c'1-path
+    risk ON x2_h (cp2);        ! c'2-path
+    risk ON x1x2 (cp3);        ! c'3-path
+  ! below make new variables, referring to paths (labels)
+  MODEL CONSTRAINT:
+    new (a1b a2b a3b cprime1 cprime2 cprime3 totX1X2 total dif1 pmX1X2);
+    a1b = a1*b;                    ! indirect effect of x1
+    a2b = a2*b;                    ! indirect effect of x2
+    a3b = a3*b;                    ! moderated mediation effect
+    cprime1 = cp1;                 ! c'1
+    cprime2 = cp2;                 ! c'2
+    cprime3 = cp3;                 ! c'3
+    totX1X2 = a3*b + cp3;          ! total effect of x1x2 on y ("risk")
+    total = a1b+a2b+a3b+cp1+cp2+cp3; ! total effect of all xs on y
+    dif1 = a3b - cp3;              ! diff. indirect and conditional direct effect
+    pmX1X2 = (a3b/(a3b+cp3))*100;  ! percentage mediated of total effect of X1X2
+  OUTPUT:
+    STDY;                          ! R-square
+    SAMPSTAT;                      ! sample statistics
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+Re-analysis of Experiment 2 in:
+Kim Sara and Ann L. McGill (2011),
+"Gaming with Mr. Slot or Gaming with the Slot Machine?
+Power, Antropomorphism, and Risk Perception,"
+Journal of Consumer Research, 38 (1), 94-107
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                          84
+
+Number of dependent variables                                    7
+Number of independent variables                                  3
+Number of continuous latent variables                            2
+
+Observed dependent variables
+
+  Continuous
+   POW1        POW2        POW3        POW4        RISK1       RISK2
+   RISK3
+
+Observed independent variables
+   X1_P        X2_H        X1X2
+
+Continuous latent variables
+   POWER       RISK
+
+
+Estimator                                                       ML
+Information matrix                                        EXPECTED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+
+Input data file(s)
+  SkinCancer-Experiment2-item-SSD.dat
+
+Input data format  FREE
+
+
+SAMPLE STATISTICS
+
+
+     SAMPLE STATISTICS
+
+
+           Means/Intercepts/Thresholds
+              POW1          POW2          POW3          POW4          RISK1
+              ________      ________      ________      ________      ________
+      1         4.095         3.702         3.810         4.679         6.560
+
+
+           Means/Intercepts/Thresholds
+              RISK2         RISK3         X1_P          X2_H          X1X2
+              ________      ________      ________      ________      ________
+      1         7.274         6.679         0.143         0.000        -0.048
+
+
+           Covariances/Correlations/Residual Correlations
+              POW1          POW2          POW3          POW4          RISK1
+              ________      ________      ________      ________      ________
+ POW1           3.371
+ POW2           1.374         2.111
+ POW3           1.280         0.693         2.129
+ POW4           0.293         0.415         0.938         2.217
+ RISK1         -0.613        -0.619        -0.715        -0.618         3.151
+ RISK2         -0.585        -0.348        -0.854        -0.399         2.322
+ RISK3         -1.205        -0.488        -1.107        -0.591         2.334
+ X1_P          -0.110         0.007        -0.068         0.034         0.315
+ X2_H          -0.048         0.060        -0.048         0.036        -0.107
+ X1X2           0.340         0.165         0.518         0.428        -0.296
+
+
+           Covariances/Correlations/Residual Correlations
+              RISK2         RISK3         X1_P          X2_H          X1X2
+              ________      ________      ________      ________      ________
+ RISK2          2.843
+ RISK3          2.481         3.478
+ X1_P           0.188         0.202         0.992
+ X2_H          -0.012        -0.060        -0.048         1.012
+ X1X2          -0.430        -0.602         0.007         0.145         1.010
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       28
+
+Loglikelihood
+
+          H0 Value                       -1000.152
+          H1 Value                        -979.347
+
+Information Criteria
+
+          Akaike (AIC)                    2056.303
+          Bayesian (BIC)                  2124.366
+          Sample-Size Adjusted BIC        2036.039
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                             41.609
+          Degrees of Freedom                    28
+          P-Value                           0.0472
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.076
+          90 Percent C.I.                    0.009  0.122
+          Probability RMSEA <= .05           0.186
+
+CFI/TLI
+
+          CFI                                0.944
+          TLI                                0.917
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            286.987
+          Degrees of Freedom                    42
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.052
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ POWER    BY
+    POW1               0.971      0.191      5.071      0.000
+    POW2               0.610      0.154      3.950      0.000
+    POW3               1.087      0.159      6.847      0.000
+    POW4               0.625      0.158      3.946      0.000
+
+ RISK     BY
+    RISK1              1.279      0.148      8.627      0.000
+    RISK2              1.338      0.137      9.747      0.000
+    RISK3              1.388      0.154      9.004      0.000
+
+ RISK     ON
+    POWER             -0.432      0.155     -2.798      0.005
+
+ POWER    ON
+    X1_P              -0.063      0.130     -0.484      0.628
+    X2_H              -0.094      0.130     -0.720      0.472
+    X1X2               0.465      0.140      3.313      0.001
+
+ RISK     ON
+    X1_P               0.142      0.122      1.172      0.241
+    X2_H              -0.019      0.122     -0.154      0.877
+    X1X2              -0.133      0.138     -0.960      0.337
+
+ Intercepts
+    POW1               4.125      0.194     21.266      0.000
+    POW2               3.721      0.155     23.997      0.000
+    POW3               3.844      0.150     25.643      0.000
+    POW4               4.699      0.159     29.567      0.000
+    RISK1              6.509      0.187     34.782      0.000
+    RISK2              7.220      0.177     40.884      0.000
+    RISK3              6.623      0.196     33.754      0.000
+
+ Residual Variances
+    POW1               2.185      0.406      5.382      0.000
+    POW2               1.634      0.275      5.945      0.000
+    POW3               0.667      0.267      2.495      0.013
+    POW4               1.717      0.289      5.947      0.000
+    RISK1              0.949      0.193      4.928      0.000
+    RISK2              0.440      0.150      2.936      0.003
+    RISK3              0.886      0.200      4.433      0.000
+    POWER              1.000      0.000    999.000    999.000
+    RISK               1.000      0.000    999.000    999.000
+
+New/Additional Parameters
+    A1B                0.027      0.057      0.477      0.633
+    A2B                0.040      0.058      0.698      0.485
+    A3B               -0.201      0.093     -2.159      0.031
+    CPRIME1            0.142      0.122      1.172      0.241
+    CPRIME2           -0.019      0.122     -0.154      0.877
+    CPRIME3           -0.133      0.138     -0.960      0.337
+    TOTX1X2           -0.334      0.130     -2.563      0.010
+    TOTAL             -0.142      0.211     -0.674      0.500
+    DIF1              -0.069      0.196     -0.349      0.727
+    PMX1X2            60.275     31.266      1.928      0.054
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ POWER    BY
+    POW1               0.586      0.092      6.370      0.000
+    POW2               0.466      0.102      4.552      0.000
+    POW3               0.826      0.079     10.470      0.000
+    POW4               0.465      0.102      4.546      0.000
+
+ RISK     BY
+    RISK1              0.834      0.041     20.310      0.000
+    RISK2              0.918      0.031     29.599      0.000
+    RISK3              0.862      0.037     23.048      0.000
+
+ RISK     ON
+    POWER             -0.414      0.127     -3.260      0.001
+
+ POWER    ON
+    X1_P              -0.057      0.117     -0.486      0.627
+    X2_H              -0.085      0.117     -0.725      0.468
+    X1X2               0.422      0.105      4.005      0.000
+
+ RISK     ON
+    X1_P               0.124      0.104      1.188      0.235
+    X2_H              -0.016      0.106     -0.155      0.877
+    X1X2              -0.115      0.120     -0.961      0.337
+
+ Intercepts
+    POW1               2.260      0.202     11.181      0.000
+    POW2               2.576      0.224     11.492      0.000
+    POW3               2.651      0.226     11.714      0.000
+    POW4               3.174      0.266     11.951      0.000
+    RISK1              3.689      0.308     11.992      0.000
+    RISK2              4.308      0.353     12.205      0.000
+    RISK3              3.573      0.299     11.939      0.000
+
+ Residual Variances
+    POW1               0.656      0.108      6.075      0.000
+    POW2               0.783      0.095      8.217      0.000
+    POW3               0.317      0.130      2.430      0.015
+    POW4               0.784      0.095      8.227      0.000
+    RISK1              0.305      0.068      4.451      0.000
+    RISK2              0.157      0.057      2.749      0.006
+    RISK3              0.258      0.064      4.003      0.000
+    POWER              0.823      0.090      9.129      0.000
+    RISK               0.756      0.100      7.588      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    POW1               0.344      0.108      3.185      0.001
+    POW2               0.217      0.095      2.276      0.023
+    POW3               0.683      0.130      5.235      0.000
+    POW4               0.216      0.095      2.273      0.023
+    RISK1              0.695      0.068     10.155      0.000
+    RISK2              0.843      0.057     14.800      0.000
+    RISK3              0.742      0.064     11.524      0.000
+
+     Latent                                         Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    POWER              0.177      0.090      1.963      0.050
+    RISK               0.244      0.100      2.456      0.014
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.369E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    f:\research\mediation\jcr_tutorial\text\version 2\cases studies\kim&mcgill(2011)\ssd\model 2\med
+
+     Beginning Time:  09:27:01
+        Ending Time:  09:27:01
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2015 Muthen & Muthen
