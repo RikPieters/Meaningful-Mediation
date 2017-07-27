@@ -405,7 +405,9 @@ summary(fit3, ci=TRUE)
 # Re-direct output from the console to path/file
 ##################################################################################
 
-sink("C:/Kim&McGill(2011)_SSD_Model_1_2.txt")  # save output in this path. Note now G:\
+# save output in this path
+sink(paste(getwd(),"/Kim&McGill(2011)_SSD_Model_1_2.txt",sep = ""))
+
 # header
 cat("Kim and McGill (2011, Study 2) - SSD - Model 1a")    # Model 1a
 cat("\n") # adds extra blank line 
@@ -449,3 +451,5 @@ cat("\n")
 ##################################################################################
 
 sink()
+
+paste("The output has been saved at: ", getwd(),"/Kim&McGill(2011)_SSD_Model_1_2.txt",sep = "")
