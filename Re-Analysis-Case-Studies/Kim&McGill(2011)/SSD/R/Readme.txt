@@ -1,6 +1,6 @@
 The R-file contains all code to estimate Model 1 and Model 2 of Kim and McGill (2011), 
 as shown in the Appendix of the Meaningful Mediation paper.
-It also estimates Compositie Reliability and Discriminant Validity
+It also estimates Composite Reliability and Discriminant Validity
 
 The R_code contains for model 1 (path model) three versions, as explained in the file.
 model 1b is the one shown in the Appendix of the paper.
