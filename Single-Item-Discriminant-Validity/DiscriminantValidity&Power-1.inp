@@ -1,0 +1,72 @@
+TITLE:
+  MONTE CARLO - DISCRIMINANT VALIDITY IN MEDIATION MODELS
+  USING "SINGLE-INDICATOR SEM"
+
+  This example uses SSD from Kupor and Tormala (2015) in Appendix B.
+
+  ! Note 1: 
+  The user provides 4 units of information in lines that have ! INPUT 1-4:
+
+  ! Note 2: 
+  Multi-item measure are treated as a single-item with known reliability.
+  This assumes strictly parallel items (same loadings and error variances).
+
+  ! Note 3: 
+  Remarks and instructions are behind ! exclamation marks
+MONTECARLO:
+  NAMES = m y;   ! Variable names
+  NREPS = 1000;  ! Number of replications. Can be increased for more precision
+  SEED = 123456; ! Seed to ensure same results across computers
+   
+!*******************************************************************************!
+! SAMPLE SIZE:
+!*******************************************************************************!
+  NOBS = 223;    ! INPUT 1: Give sample size.                         Here: 223
+!*******************************************************************************!
+
+MODEL POPULATION:
+
+!*******************************************************************************!
+! RELIABILITY OF M AND Y, AND OBSERVED CORRELATION:
+!*******************************************************************************!
+  fm@.93;        ! INPUT 2: Give reliability of m.                    Here: .93 
+  fy@.83;        ! INPUT 3: Give reliability of y.                    Here: .83
+  m WITH y@.356; ! INPUT 4: Give observed correlation m,y (no sign).  Here: .356
+!*******************************************************************************!
+  [fm-fy@0];     ! Factor means fixed to 0
+  fm BY m@1;     ! Factor loading fixed to 1 
+  fy BY y@1;     ! Factor loading fixed to 1
+  m-y@1;         ! Variance of m and y fixed to 1
+  [m-y@0];       ! Mean of m and y fixed to 0
+  fm WITH fy@0;  ! True correlation fixed to zero for identification
+MODEL:	
+  fm*.93 (r_mm); fy*.83 (r_yy); m WITH y*.356 (cor); 
+  [fm-fy@0]; fm BY m@1; fy BY y@1; m-y@1; [m-y@0]; fm WITH fy@0;
+
+MODEL CONSTRAINT: 
+  ! Below in NEW(name*number): 
+  !    name   = the label of a new variable to be made, 
+  !    *      = "compare to" 
+  !    number = the population value or benchmark to compare to.
+  !    This number is used to determine coverage, not to determine power.
+  NEW (reli_m*.93 reli_y*.83 r_obs*.356 r_true*.405 dvi_l*0 dvi_s_m*0 dvi_s_y*0); 
+  reli_m = r_mm;                             ! reliability of m  
+  reli_y = r_yy;                             ! reliability of y   
+  r_obs = cor;                               ! observed correlation m-y
+  r_true = r_obs/SQRT(reli_m*reli_y);   
+! lenient discriminant validity index: rtru < 1
+  dvi_l  = 1 - r_true;                       ! dvi_l for both 
+! strict discriminant validity index (dvi_s): var extracted > var shared
+  dvi_s_m = reli_m - r_true^2;               ! dvi_s for m
+  dvi_s_y = reli_y - r_true^2;               ! dvi_s for y 
+
+!*******************************************************************************!
+ ! Interpretation of results:
+
+ ! For Statistical Power check in the section "New/Additional Parameters" ...
+ ! the columns "ESTIMATES average" and "% Sig coeff".
+
+ ! Discriminant Validity is supported if:
+ ! (1) DVI's ("ESTIMATES average") are larger than zero, and 
+ ! (2) have > 80% significant coefficients ("% Sig coeff")
+!*******************************************************************************!
