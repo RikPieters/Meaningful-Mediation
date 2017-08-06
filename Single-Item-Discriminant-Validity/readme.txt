@@ -50,6 +50,6 @@ Warning:
 
 With smaller sample sizes, 
 larger observed correlations, and 
-smaller reliabilities of M and Y, it is less likely that
-discriminant validity is present. 
-Then the models estimated with this code might not converge. 
+smaller reliabilities of M and Y, it is LESS likely that there is evidence for
+discriminant validity. 
+Then models estimated with this code might not converge. 
